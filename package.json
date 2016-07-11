@@ -1,0 +1,19 @@
+{
+  "name": "package",
+  "version": "1.0.0",
+  "description": "Creativeshot for posting creative and amazing pictures by people around the world.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/stamariajerome/creativeshots.git"
+  },
+  "author": "Jerome Sta. Maria",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stamariajerome/creativeshots/issues"
+  },
+  "homepage": "https://github.com/stamariajerome/creativeshots#readme"
+}
