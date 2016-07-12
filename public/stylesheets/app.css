@@ -71,7 +71,8 @@ ul.comments li {
 }
 
 .image-title {
-  margin-bottom: 10px;
+  margin-top: 8px;
+  vertical-align: bottom;
 }
 
 

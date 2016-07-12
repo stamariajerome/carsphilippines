@@ -64,10 +64,29 @@ app.post('/collections', function(req, res) {
   });
 });
 
-// TODO do view collection
+// EDIT - edit a collection in the DB
+app.get('/collections/:id/edit', function(req, res) {
+  res.render('collections/edit');
+});
+
 // SHOW - Show information about the collection
 app.get('/collections/:id', function(req, res) {
-  res.render('collections/show');
+  var id = req.params.id;
+  Collection.findById(id, function(err, foundCollection) {
+    if(err) {
+      console.log(err);
+      return res.redirect('/collections');
+    }
+    res.render('collections/show', {Collection: foundCollection});
+  });
+
+});
+
+// ===============
+// COMMENTS
+// ===============
+app.get('/collections/:id/comments/new', function(req, res) {
+  res.render('comments/new');
 });
 
 app.listen('3000', function() {

@@ -2,15 +2,23 @@
   <div class="container">
     <div class="col-lg-7">
       <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-lg-8"><h4 class="image-title" id="image-title"><strong><%= Collection.title %></strong></h4></div>
+            <div class="col-lg-4"><a class="btn btn-link pull-right" href="/collections/<%= Collection._id %>">Edit</a></div>
+          </div>
+        </div>
         <div class="panel-body">
-          <h4 class="image-title" id="image-title"><strong>Night sky</strong></h4>
-          <img class="img-responsive" src="https://images.unsplash.com/photo-1467173572719-f14b9fb86e5f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=b734e103303c5965225682077ee72f86" alt="" />
+          <img class="img-responsive" src="<%= Collection.image %>" alt="" />
         </div>
       </div>
     </div>
     <div class="col-lg-5">
       <div class="panel panel-default">
-        <div class="panel-heading">Comments</div>
+        <div class="panel-heading">
+          <h5>Comments</h5>
+          <a href="/collections/<%= Collection._id %>/comments/new">Add Comment</a>
+        </div>
         <div class="panel-body">
           <ul class="comments">
             <li>
