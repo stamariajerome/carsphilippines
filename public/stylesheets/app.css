@@ -2,6 +2,82 @@ body {
     padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
 
+h1, h2, h3, h4, h5, h6 {
+  padding: 0;
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+/* =======================
+      COLLECTIONS INDEX
+   ======================= */
+.description {
+  padding: 0 10px 5px;
+  width: 100%;
+}
+
+.title {
+  float: left;
+}
+
+ul.tool-group {
+  float: right;
+}
+
+ul.tool-group li {
+  list-style: none;
+  display: inline-block;
+  margin-right: 5px;
+  vertical-align: top;
+  color: #555;
+}
+
+ul.tool-group li:hover {
+  color: #3e3e3e;
+  cursor: pointer;
+}
+
 footer {
     margin: 50px 0;
+}
+
+.thumbnail img {
+  padding: 10px;
+}
+
+/* =======================
+      COLLECTIONS VIEW
+   ======================= */\
+ul.comments {
+  padding: 0 15px;
+}
+
+ul.comments li {
+  list-style: none;
+}
+
+.user-profile-picture img {
+  border-radius: 50px;
+  width: 30px;
+  margin-right: 5px;
+}
+
+.user-comment {
+  margin-top: 15px;
+}
+
+.image-title {
+  margin-bottom: 10px;
+}
+
+
+.padding {
+  padding-top: 5%;
+}
+.clearfix {
+  overflow: auto;
 }

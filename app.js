@@ -27,7 +27,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
 
 // ===============
-// INDEX
+// LANDING
 // ===============
 app.get('/', function(req, res) {
   res.render('landing');
@@ -44,19 +44,19 @@ app.get('/collections', function(req, res) {
       res.render('collections/index', { collections: collections });
     }
   });
-
 });
 
+// INDEX - show all collections in the DB
 app.get('/collections/new', function(req, res) {
   res.render('collections/new');
 });
 
-// new
+// CREATE - add new collection into the DB
 app.post('/collections', function(req, res) {
   var newCollection = req.body.collection;
+
   Collection.create(newCollection, function(err, newCollection) {
     if(err) {
-      res.redirect('/collections/new');
       console.log(err);
     } else {
       res.redirect('/collections');
@@ -64,9 +64,10 @@ app.post('/collections', function(req, res) {
   });
 });
 
-//view
+// TODO do view collection
+// SHOW - Show information about the collection
 app.get('/collections/:id', function(req, res) {
-  res.send('this is a view');
+  res.render('collections/show');
 });
 
 app.listen('3000', function() {
