@@ -112,6 +112,10 @@ app.get('/collections/:id/comments/new', function(req, res) {
   res.render('comments/new');
 });
 
+app.get('*', function(req, res) {
+  res.render('404');
+});
+
 app.listen('3000', function() {
   console.log('Server started at port 3000..');
 });
