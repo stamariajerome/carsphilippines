@@ -8,19 +8,19 @@
       <form class="" action="/collections/:id/edit?_method=put" method="post">
         <div class="field-group">
           <label for="title">Title</label>
-          <input class="form-control" type="text" name="collection[title]">
+          <input class="form-control" type="text" name="collection[title]" value="<%= Collection.title %>">
         </div>
         <div class="field-group">
           <label for="author">Author</label>
-          <input class="form-control" type="text" name="collection[author]">
+          <input class="form-control" type="text" name="collection[author]" value="<%= Collection.author %>">
         </div>
         <div class="field-group">
           <label for="image">Image URL</label>
-          <input class="form-control" type="text" name="collection[image]">
+          <input class="form-control" type="text" name="collection[image]" value="<%= Collection.image %>">
         </div>
         <div class="field-group">
           <label for="description">description</label>
-          <textarea class="form-control" name="collection[description]"></textarea>
+          <textarea class="form-control" name="collection[description]"><%= Collection.description %></textarea>
         </div>
         <br>
         <button class="btn btn-primary" type="submit">Add Picture</button>

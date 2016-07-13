@@ -66,7 +66,14 @@ app.post('/collections', function(req, res) {
 
 // EDIT - edit a collection in the DB
 app.get('/collections/:id/edit', function(req, res) {
-  res.render('collections/edit');
+  var id = req.params.id;
+  Collection.findById(id, function(err, foundCollection) {
+    if(err) {
+      return res.redirect('/collections/' + id + '/edit');
+    }
+    res.render('collections/edit', { Collection: foundCollection });
+  });
+
 });
 
 // SHOW - Show information about the collection
@@ -81,6 +88,10 @@ app.get('/collections/:id', function(req, res) {
   });
 
 });
+
+//UPDATE - Update information of a collection in the DB
+
+//DESTROY - Delete a particular collection in the DB
 
 // ===============
 // COMMENTS

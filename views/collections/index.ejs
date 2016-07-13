@@ -25,7 +25,9 @@
           <% collections.forEach(function(collection){ %>
             <div class="col-lg-4 col-sm-6">
               <div id="thumbnail" class="thumbnail">
-                <img src="<%= collection.image %>" alt="" />
+                <a href="/collections/<%= collection._id %>">
+                  <img src="<%= collection.image %>" alt="" />
+                </a>
                 <div class="description clearfix">
                   <a href="/collections/<%= collection._id %>"><h5 class="title"><%= collection.title %></h5></a>
                   <ul class="tool-group">

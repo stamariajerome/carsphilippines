@@ -4,8 +4,14 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <div class="row">
-            <div class="col-lg-8"><h4 class="image-title" id="image-title"><strong><%= Collection.title %></strong></h4></div>
-            <div class="col-lg-4"><a class="btn btn-link pull-right" href="/collections/<%= Collection._id %>">Edit</a></div>
+            <div class="col-lg-8">
+              <h4 class="image-title" id="image-title">
+                <strong><%= Collection.title %></strong>
+              </h4>
+            </div>
+            <div class="col-lg-4">
+              <a class="btn btn-link pull-right" href="/collections/<%= Collection._id %>/edit">Edit</a>
+            </div>
           </div>
         </div>
         <div class="panel-body">
