@@ -10,7 +10,18 @@
               </h4>
             </div>
             <div class="col-lg-4">
-              <a class="btn btn-link pull-right" href="/collections/<%= Collection._id %>/edit">Edit</a>
+              <div class="btn-toolbar pull-right">
+                <div class="btn-group">
+                    <a  href="/collections/<%= Collection._id %>/edit" class="btn btn-default" type="submit">
+                      <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <div class="btn-group">
+                  <button class="btn btn-default" type="submit">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>

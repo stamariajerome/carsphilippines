@@ -4,6 +4,7 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
 
 
 var collectionSchema = mongoose.Schema({
@@ -24,6 +25,7 @@ mongoose.connect('mongodb://localhost/creativeshots');
 var app = express();
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(methodOverride('_method'));
 app.set('view engine', 'ejs');
 
 // ===============
@@ -86,12 +88,22 @@ app.get('/collections/:id', function(req, res) {
     }
     res.render('collections/show', {Collection: foundCollection});
   });
-
 });
 
 //UPDATE - Update information of a collection in the DB
+app.put('/collections/:id', function(req, res) {
+  var id = req.params.id;
+  var update = req.body.collection;
+  Collection.findByIdAndUpdate(id, update, function(err, foundCollection) {
+    if(err) {
+      return res.redirect('/collections/' + id + '/edit');
+    }
+    res.redirect('/collections/' + id);
+  });
+});
 
 //DESTROY - Delete a particular collection in the DB
+//TODO destrouy route
 
 // ===============
 // COMMENTS
