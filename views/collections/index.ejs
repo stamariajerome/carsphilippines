@@ -10,7 +10,7 @@
               </h1>
           </div>
           <div class="col-lg-4">
-            <a href="/collections/new" class="btn btn-primary pull-right" type="button">
+            <a href="/Collections/new" class="btn btn-primary pull-right" type="button">
               <span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
               Add Picture
             </a>
@@ -22,14 +22,14 @@
 
         <!-- Projects Row -->
         <div class="row">
-          <% collections.forEach(function(collection){ %>
+          <% Collections.forEach(function(Collection){ %>
             <div class="col-lg-4 col-sm-6">
               <div id="thumbnail" class="thumbnail">
-                <a href="/collections/<%= collection._id %>">
-                  <img src="<%= collection.image %>" alt="" />
+                <a href="/Collections/<%= Collection._id %>">
+                  <img src="<%= Collection.image %>" alt="<%= Collection.title %>" />
                 </a>
                 <div class="description clearfix">
-                  <a href="/collections/<%= collection._id %>"><h5 class="title"><%= collection.title %></h5></a>
+                  <a href="/Collections/<%= Collection._id %>"><h5 class="title"><%= Collection.title %></h5></a>
                   <ul class="tool-group">
                     <li><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;<span id="view-hits">5674</span></li>
                     <li><i class="fa fa-comment" aria-hidden="true"></i>&nbsp;<span id="comment-hits">58</span></li>

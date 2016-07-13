@@ -6,17 +6,11 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
-
-var collectionSchema = mongoose.Schema({
-  image: String,
-  title: String,
-  author: String,
-  description: String,
-  date: { type: String, default: Date.now }
-});
-
-var Collection = mongoose.model('Collection', collectionSchema);
-
+// ===============
+// MODELS
+// ===============
+var Collection = require('./models/collection');
+var Comment = require('./models/comment');
 
 // ===============
 // CONFIGURATION
@@ -38,17 +32,18 @@ app.get('/', function(req, res) {
 // ===============
 // COLLECTIONS
 // ===============
+// INDEX - show all collections in the DB
 app.get('/collections', function(req, res) {
   Collection.find({}, function(err, collections) {
     if(err) {
       console.log(err);
     } else {
-      res.render('collections/index', { collections: collections });
+      res.render('collections/index', { Collections: collections });
     }
   });
 });
 
-// INDEX - show all collections in the DB
+// NEW - show new collection form
 app.get('/collections/new', function(req, res) {
   res.render('collections/new');
 });
@@ -86,8 +81,15 @@ app.get('/collections/:id', function(req, res) {
       console.log(err);
       return res.redirect('/collections');
     }
-    res.render('collections/show', {Collection: foundCollection});
+    // TODO change to proper relational collection
+    Comment.find({}, function(err, comments) {
+      if(err) {
+        console.log(err);
+      } else {
+        res.render('collections/show', {Collection: foundCollection, Comments: comments });
+      }
   });
+});
 });
 
 //UPDATE - Update information of a collection in the DB
@@ -103,13 +105,51 @@ app.put('/collections/:id', function(req, res) {
 });
 
 //DESTROY - Delete a particular collection in the DB
-//TODO destrouy route
+app.delete('/collections/:id', function(req, res) {
+  var id = req.params.id;
+  Collection.findByIdAndRemove(id, function(err, foundCollection) {
+    if(err) {
+      console.log(err);
+      return res.redirect('/collections');
+    }
+    return res.redirect('/collections');
+  });
+});
 
 // ===============
 // COMMENTS
 // ===============
+
+// NON EXISTENT --------------------------
+// TODO Delete this in the future
 app.get('/collections/:id/comments/new', function(req, res) {
   res.render('comments/new');
+});
+
+// CREATE - add new comment into the DB.
+app.post('/collections/:id/comments', function(req, res) {
+  var newComment = req.body.comment;
+  var id = req.params.id;
+  Comment.create(newComment, function(err, newComment) {
+    if(err) {
+      console.log(err);
+    } else {
+      res.redirect('/collections/' + id);
+    }
+  });
+});
+
+//DESTROY - remove a spcific comment in the DB
+app.delete('/collections/:id/comments', function(req, res) {
+  var commentId = req.body.id;
+  var CollectionId = req.params.id;
+  Comment.findByIdAndRemove(commentId, function(err, foundComment) {
+    if(err) {
+      console.log(err);
+    } else {
+      res.redirect('/collections/' + CollectionId);
+    }
+  });
 });
 
 app.get('*', function(req, res) {

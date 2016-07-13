@@ -45,7 +45,7 @@ footer {
 }
 
 .thumbnail img {
-  padding: 10px;
+  padding: 5px;
 }
 
 /* =======================
@@ -74,9 +74,37 @@ ul.comments li {
   vertical-align: bottom;
 }
 
-
 .padding {
   padding-top: 5%;
+}
+
+.btn-icon {
+  border: none;
+  background: none;
+}
+
+.btn-icon:focus {
+  outline: none;
+}
+
+.btn-icon i {
+  color: #ccc;
+}
+
+.btn-icon i:hover {
+  color: #555;
+}
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
+
+.comment-form {
+  display: inline;
 }
 
 /* clearfix */
