@@ -184,6 +184,13 @@ app.delete('/collections/:id/comments', function(req, res) {
 
 });
 
+// ===============
+// USER
+// ===============
+app.get('/register', function(req, res) {
+  res.render('register');
+});
+
 app.get('*', function(req, res) {
   res.render('404');
 });

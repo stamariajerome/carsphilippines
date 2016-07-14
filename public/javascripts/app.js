@@ -11,5 +11,10 @@ $(function() {
     $(this).find('.btn-remove').toggleClass('hidden');
   });
 
+  // TODO fix overlay
+  // $('.collection-thumbnail').on('mousenter mouseout', function() {
+  //   var select = $(this).find('.description-overlay');
+  //   console.log(select);
+  // });
 
 });

@@ -5,7 +5,7 @@ var collectionSchema = mongoose.Schema({
   title: String,
   author: String,
   description: String,
-  date: { type: String, default: Date.now },
+  date: { type: Date, default: Date.now },
   comments: [
     {
       type: mongoose.Schema.Types.ObjectId,

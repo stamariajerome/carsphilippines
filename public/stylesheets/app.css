@@ -1,8 +1,12 @@
 /* ===========
       GLOBAL
    =========== */
+*, *before, *:after, html, body {
+  box-sizing: border-box;
+}
 body {
     padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    background-color: #f4f4f4;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -22,9 +26,62 @@ textarea {
 p {
   word-wrap: break-word;
 }
+
+/* =============
+      HEADER
+   ============= */
+
+nav.navbar {
+  background-color: #444444;
+  height: 60px;
+}
+
+nav.navbar .container {
+  padding-top: 6px;
+}
+
+.text-search-group {
+  position: relative;
+  margin-top: 9px;
+}
+
+.fa.fa-search {
+  position: absolute;
+  top: 7px;
+  left: 10px;
+  color: #ccc;
+}
+
+.text-search {
+  width: 200px;
+  height: 30px;
+  padding-left: 30px;
+}
+
 /* =======================
       COLLECTIONS INDEX
    ======================= */
+div.collection-show {
+  padding-top: 40px;
+}
+
+.btn-group > .btn.btn-default, .btn-group form > .btn.btn-default {
+  background: none;
+  border: none;
+}
+
+.btn-group > .btn.btn-default:hover, .btn-group form > .btn.btn-default:hover {
+  color: #555;
+}
+
+.btn-group > .btn.btn-default:active, .btn-group form > .btn.btn-default:active {
+  box-shadow: none;
+}
+
+.btn-group form > .btn.btn-default:focus {
+  outline: none;
+}
+
 .description {
   padding: 0 10px 5px;
 }
@@ -54,6 +111,28 @@ footer {
     margin: 50px 0;
 }
 
+.description-overlay {
+  width: 94%;
+  height: 80%;
+  top: 8px;
+  position: absolute;
+  left: 3%;
+  background-color: #fff;
+  text-align: center;
+}
+
+.description-content {
+  color: #555;
+  padding: 10%;
+}
+
+.description-date {
+  color: #555;
+}
+
+.thumbnail {
+  position: relative;
+}
 .thumbnail img {
   padding: 5px;
 }

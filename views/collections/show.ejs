@@ -1,5 +1,5 @@
 <% include ../partials/header %>
-  <div class="container">
+  <div class="container collection-show">
     <div class="col-lg-7">
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -12,9 +12,9 @@
             <div class="col-lg-4">
               <div class="btn-toolbar pull-right">
                 <div class="btn-group">
-                    <a  href="/collections/<%= Collection._id %>/edit" class="btn btn-default" type="submit">
-                      <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                    </a>
+                  <a href="/collections/<%= Collection._id %>/edit" class="btn btn-default" type="submit">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                  </a>
                 </div>
                 <div class="btn-group">
                   <form action="/collections/<%= Collection._id %>?_method=delete" method="post">
