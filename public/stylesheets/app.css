@@ -18,6 +18,10 @@ ul {
 textarea {
   max-width: 100%;
 }
+
+p {
+  word-wrap: break-word;
+}
 /* =======================
       COLLECTIONS INDEX
    ======================= */

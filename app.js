@@ -6,28 +6,32 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
+//authentication
+var pasport = require('passport');
+var LocalStrategy = require('passport-local');
 // ===============
 // MODELS
 // ===============
 var Collection = require('./models/collection');
 var Comment = require('./models/comment');
+var User = require('./models/user');
 
 // ===============
 // CONFIGURATION
 // ===============
+
 mongoose.connect('mongodb://localhost/creativeshots');
 var app = express();
+// TODO Just added express
+app.use(require('express-session')({
+  secret: 'This is a secret string for the application',
+  resave: false,
+  saveUninitialized: false
+}));
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
 app.set('view engine', 'ejs');
-
-
-
-var newComment = {
-  author: 'Jerome Sta. Maria',
-  content: 'This is another comment'
-  };
 
 // ===============
 // LANDING
@@ -48,6 +52,7 @@ app.get('/collections', function(req, res) {
       res.render('collections/index', { Collections: collections });
     }
   });
+
 });
 
 // NEW - show new collection form
@@ -66,11 +71,13 @@ app.post('/collections', function(req, res) {
       res.redirect('/collections');
     }
   });
+
 });
 
 // EDIT - edit a collection in the DB
 app.get('/collections/:id/edit', function(req, res) {
   var id = req.params.id;
+
   Collection.findById(id, function(err, foundCollection) {
     if(err) {
       return res.redirect('/collections/' + id + '/edit');
@@ -84,6 +91,7 @@ app.get('/collections/:id/edit', function(req, res) {
 
 app.get('/collections/:id', function(req, res) {
   var id = req.params.id;
+
   Collection.findById(id, function(err, foundCollection) {
     if(err) {
       console.log(err);
@@ -97,23 +105,27 @@ app.get('/collections/:id', function(req, res) {
       });
     }
   });
+
 });
 
 //UPDATE - Update information of a collection in the DB
 app.put('/collections/:id', function(req, res) {
   var id = req.params.id;
   var update = req.body.collection;
+
   Collection.findByIdAndUpdate(id, update, function(err, foundCollection) {
     if(err) {
       return res.redirect('/collections/' + id + '/edit');
     }
     res.redirect('/collections/' + id);
   });
+
 });
 
 //DESTROY - Delete a particular collection in the DB
 app.delete('/collections/:id', function(req, res) {
   var id = req.params.id;
+
   Collection.findByIdAndRemove(id, function(err, foundCollection) {
     if(err) {
       console.log(err);
@@ -121,6 +133,7 @@ app.delete('/collections/:id', function(req, res) {
     }
     return res.redirect('/collections');
   });
+
 });
 
 // ===============
@@ -154,13 +167,13 @@ app.post('/collections/:id/comments', function(req, res) {
     }
   });
 
-
 });
 
 //DESTROY - remove a spcific comment in the DB
 app.delete('/collections/:id/comments', function(req, res) {
   var commentId = req.body.id;
   var CollectionId = req.params.id;
+
   Comment.findByIdAndRemove(commentId, function(err, foundComment) {
     if(err) {
       console.log(err);
@@ -168,6 +181,7 @@ app.delete('/collections/:id/comments', function(req, res) {
       res.redirect('/collections/' + CollectionId);
     }
   });
+
 });
 
 app.get('*', function(req, res) {
