@@ -10,4 +10,6 @@ $(function() {
   $('#comments').on('mouseover mouseout', 'li', function() {
     $(this).find('.btn-remove').toggleClass('hidden');
   });
+
+
 });

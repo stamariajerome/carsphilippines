@@ -22,6 +22,13 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
 app.set('view engine', 'ejs');
 
+
+
+var newComment = {
+  author: 'Jerome Sta. Maria',
+  content: 'This is another comment'
+  };
+
 // ===============
 // LANDING
 // ===============
@@ -74,22 +81,22 @@ app.get('/collections/:id/edit', function(req, res) {
 });
 
 // SHOW - Show information about the collection
+
 app.get('/collections/:id', function(req, res) {
   var id = req.params.id;
   Collection.findById(id, function(err, foundCollection) {
     if(err) {
       console.log(err);
-      return res.redirect('/collections');
+    } else {
+      Collection.findById(foundCollection._id).populate('comments').exec(function(err, foundComments) {
+        if(err) {
+          console.log(err);
+        } else {
+          res.render('collections/show', {Comments: foundComments.comments, Collection: foundCollection});
+        }
+      });
     }
-    // TODO change to proper relational collection
-    Comment.find({}, function(err, comments) {
-      if(err) {
-        console.log(err);
-      } else {
-        res.render('collections/show', {Collection: foundCollection, Comments: comments });
-      }
   });
-});
 });
 
 //UPDATE - Update information of a collection in the DB
@@ -130,13 +137,24 @@ app.get('/collections/:id/comments/new', function(req, res) {
 app.post('/collections/:id/comments', function(req, res) {
   var newComment = req.body.comment;
   var id = req.params.id;
-  Comment.create(newComment, function(err, newComment) {
+
+  Collection.findById(id, function(err, foundCollection) {
     if(err) {
       console.log(err);
     } else {
-      res.redirect('/collections/' + id);
+      Comment.create(newComment, function(err, newComment) {
+        if(err) {
+          console.log(err);
+        } else {
+          foundCollection.comments.push(newComment);
+          foundCollection.save();
+          res.redirect('/collections/' + foundCollection._id);
+        }
+      });
     }
   });
+
+
 });
 
 //DESTROY - remove a spcific comment in the DB
