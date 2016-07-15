@@ -1,0 +1,22 @@
+<% include ../partials/header %>
+<div class="container login-form">
+  <div class="col-lg-4 col-lg-offset-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4><strong>Login</strong></h4>
+      </div>
+      <div class="panel-body">
+        <form action="/login" method="post">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input class="form-control" type="text" name="username" placeholder="username">
+            <label for="password">Password</label>
+            <input class="form-control" type="password" name="password" placeholder="password">
+          </div>
+          <button class="btn btn-primary" type="submit" name="button">Register</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<% include ../partials/footer %>

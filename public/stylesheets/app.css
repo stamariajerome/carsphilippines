@@ -56,7 +56,13 @@ nav.navbar .container {
   width: 200px;
   height: 30px;
   padding-left: 30px;
+  margin-right: 10px;
 }
+
+li a.user-menu {
+  padding: 8px 0 0 0;
+}
+
 
 /* =======================
       COLLECTIONS INDEX
@@ -139,7 +145,7 @@ footer {
 
 /* =======================
       COLLECTIONS VIEW
-   ======================= */\
+   ======================= */
 ul.comments {
   padding: 0 15px;
 }
@@ -194,6 +200,14 @@ ul.comments li {
 
 .comment-form {
   display: inline;
+}
+
+/* ==========
+      USER
+   ========== */
+
+.login-form {
+  padding-top: 50px;
 }
 
 /* clearfix */

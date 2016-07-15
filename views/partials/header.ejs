@@ -12,7 +12,7 @@
     <title>Creative Shots</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
+    <link href="/stylesheets/bootstrap.css" rel="stylesheet">
     <!-- Font Awesome CSS -->
     <link href="/stylesheets/font-awesome.css" rel="stylesheet" >
     <!-- Custom CSS -->
@@ -46,7 +46,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="/collections">
-                  <span class="glyphicon glyphicon-camera"></span>
+                  <i class="fa fa-camera" aria-hidden="true"></i>
                   Creative Shots
                 </a>
             </div>
@@ -64,9 +64,12 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                 <li><a href="/login">Login</a></li>
-                 <li><a href="/register">Register</a></li>
-                 <li><a href="/logout">Logout</a></li>
+                  <% if(currentUser === undefined) {%>
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/register">Register</a></li>
+                  <% } else { %>
+                     <li><a href="/logout">Logout</a></li>
+                  <% } %>
                  <li>
                    <%# TODO add form soon %>
                    <div class="text-search-group">
@@ -74,6 +77,14 @@
                       <input type="text" class="form-control text-search" placeholder="Search">
                    </div>
                  </li>
+                 <% if(currentUser !== undefined) {%>
+                   <li>
+                      <a class="user-menu" href="#">
+                        <span class="user-profile-picture" id="profile-picture"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxAQDhUQEA4PDxAQEg8REg4QFREQDg8VFhMWFxgWFxMYHSggGBolGxMTITEhJSkrLy4uGB8zODMtNygtLisBCgoKDQ0NEhAPGC0ZFRkrNysrNystNysrNystLSsrKysrKys3NysrKysrKysrKysrKysrKysrKysrKysrKysrK//AABEIAKAAoAMBIgACEQEDEQH/xAAbAAEAAwEBAQEAAAAAAAAAAAAABAUGAQIDB//EADEQAAIBAgIHBwQCAwAAAAAAAAABAgMRBCEFBhIxQVFxEzJSgZGxwSJh0eFyoSNDsv/EABYBAQEBAAAAAAAAAAAAAAAAAAABAv/EABURAQEAAAAAAAAAAAAAAAAAAAAB/9oADAMBAAIRAxEAPwD9hAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA5OairyailxeSPhj8ZGjDalnwUeMnyMljcZOrK830iu7HogNBiNPUo91SqdMo+rIc9ZJ8KUV1bfwiiOlRdx1jnxpRfRtEvD6fpS70ZQ+/eX9GZAG7pVIyW1GSkuazR6MThMXOlLag7c1wl9mjW6Pxka0NpZPdKPhZFSQAAAAAAAAAAAAAIEfSFbs6M5cVF26vJAZnTOL7Wq7d2F4x+WQDh0qAAKgAABN0PjOyqpvuytGXTn5EIBW9YIujK23RhJ79mz6rIlGVAAAAAAAAAAAKrWSdqFvFKK938FqU2tL/AMUP5v8A5LBmwAVAABAAAAAFafVmd6LXhm/7SZbFJqq/oqfyh7MuzKgAAAAAAAAAAFFrPXi1GmnealtNclYvTGaVv29S/jf6LERQAVAAAAAAAAF7qxiIpyg3aU2nFc7JmgMTgL9tC2/bjb1NsStAAIAAAAAAAABQ6e0ZKUu1ppyuvqit+XFLiXwKMHODi7NNPk8mcLXWOnavfxRTXs/YqioAAIAAAdjFt2Sbb4LNnCy1fp3xEX4VKT9LfIVK0FouamqtSLio5xT3t9OBoQDKgAAAAAAAAAAAACr1gwm3S2l3qd35Pf8AkyxvTEY2moVZxW6MpJepYj4gAqAAAGm1cwuzTdR76lrfaK/JncPDanGPCUop+bRuUrZLJLJIlUABFAAAAAAAAAAAAk0ldtJc3kQqulaEd9RP+N5ewE1GIxs9qrN85y9y/rafpJPZU27O2SSvw4maKgACoAAD3QnszjLlKL9GjdMwJpcPp+nsRUlO6ik2kmrrzJVXIIVLS1CX+xJ8pXiTISTV001zVmiK6AAAAACwRUaV0yqf0U7SnxlvjH8sCxxWLhSV5yS5LfJ9EUWL1gk8qcdheKWcvTgU9WrKTcpNyb3t7zyVH0r15zd5ylJ/d3PmAUAAEAAAAAAAAD3RrSg7xk49HY8AKucJrBOOVSKmuaykvhl5hMZTqq8JX5rdJeRij1TqOLvFtNbmsmiDdgptFaaU2oVbKW5T4S+z5MuSKrNPY7soKMXac758Yri+plSfpytt15co/SvL93IBUAAVAAAAAAAAAAAAAAAAAAADT6v451IuEneULWb3yj+jME3Q9fYrxfBvZfR5EV//2Q==" alt="" /></span>
+                        <%= currentUser.username %>
+                      </a>
+                   </li>
+                 <% } %>
                </ul>
 
             </div>
