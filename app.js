@@ -41,6 +41,7 @@ app.set('view engine', 'ejs');
 // ===============
 var collectionRoutes = require('./routes/collections');
 var commentRoutes = require('./routes/comments');
+var userRoutes = require('./routes/users');
 
 //authentication
 // TODO initialize authentication
@@ -64,54 +65,7 @@ app.get('/', function(req, res) {
 
 app.use(collectionRoutes);
 app.use(commentRoutes);
-
-// ===============
-// USER
-// ===============
-app.get('/register', function(req, res) {
-  res.render('users/register');
-});
-
-app.post('/register', function(req, res) {
-  User.register(new User({username: req.body.username}), req.body.password, function(err, newUser){
-    if(err) {
-      console.log(err);
-      res.redirect('/register');
-    } else {
-      passport.authenticate('local')(req, res, function() {
-        console.log(newUser);
-        res.redirect('/collections');
-      });
-    }
-  });
-});
-
-app.get('/login', function(req, res) {
-  res.render('users/login');
-});
-
-app.post('/login', passport.authenticate('local', {
-  successRedirect: '/collections',
-  failureRedireect: '/login'
-}) ,function(req, res) {
-  res.send('login post route');
-});
-
-app.get('/logout', function(req, res) {
-  req.logout();
-  res.redirect('/collections');
-});
-
-app.get('*', function(req, res) {
-  res.render('404');
-});
-
-function isLoggedIn(req, res, next) {
-  if(req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect('/login');
-}
+app.use(userRoutes);
 
 
 app.listen('3000', function() {

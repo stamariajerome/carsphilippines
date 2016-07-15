@@ -8,12 +8,12 @@ var Collection = require('../models/collection');
 
 // NON EXISTENT --------------------------
 // TODO Delete this in the future
-router.get('/collections/:id/comments/new', function(req, res) {
+router.get('/collections/:id/comments/new', isLoggedIn, function(req, res) {
   res.render('comments/new');
 });
 
 // CREATE - add new comment into the DB.
-router.post('/collections/:id/comments', function(req, res) {
+router.post('/collections/:id/comments', isLoggedIn, function(req, res) {
   var newComment = req.body.comment;
   var id = req.params.id;
 
@@ -36,7 +36,7 @@ router.post('/collections/:id/comments', function(req, res) {
 });
 
 //DESTROY - remove a spcific comment in the DB
-router.delete('/collections/:id/comments', function(req, res) {
+router.delete('/collections/:id/comments', isLoggedIn, function(req, res) {
   var commentId = req.body.id;
   var CollectionId = req.params.id;
 
@@ -49,5 +49,12 @@ router.delete('/collections/:id/comments', function(req, res) {
   });
 
 });
+
+function isLoggedIn(req, res, next) {
+  if(req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/login');
+}
 
 module.exports = router;

@@ -19,12 +19,12 @@ router.get('/collections', isLoggedIn, function(req, res) {
 });
 
 // NEW - show new collection form
-router.get('/collections/new', function(req, res) {
+router.get('/collections/new', isLoggedIn, function(req, res) {
   res.render('collections/new');
 });
 
 // CREATE - add new collection into the DB
-router.post('/collections', function(req, res) {
+router.post('/collections', isLoggedIn, function(req, res) {
   var newCollection = req.body.collection;
 
   Collection.create(newCollection, function(err, newCollection) {
@@ -38,7 +38,7 @@ router.post('/collections', function(req, res) {
 });
 
 // EDIT - edit a collection in the DB
-router.get('/collections/:id/edit', function(req, res) {
+router.get('/collections/:id/edit', isLoggedIn, function(req, res) {
   var id = req.params.id;
 
   Collection.findById(id, function(err, foundCollection) {
@@ -52,7 +52,7 @@ router.get('/collections/:id/edit', function(req, res) {
 
 // SHOW - Show information about the collection
 
-router.get('/collections/:id', function(req, res) {
+router.get('/collections/:id', isLoggedIn, function(req, res) {
   var id = req.params.id;
 
   Collection.findById(id, function(err, foundCollection) {
@@ -72,7 +72,7 @@ router.get('/collections/:id', function(req, res) {
 });
 
 //UPDATE - Update information of a collection in the DB
-router.put('/collections/:id', function(req, res) {
+router.put('/collections/:id', isLoggedIn, function(req, res) {
   var id = req.params.id;
   var update = req.body.collection;
 
@@ -86,7 +86,7 @@ router.put('/collections/:id', function(req, res) {
 });
 
 //DESTROY - Delete a particular collection in the DB
-router.delete('/collections/:id', function(req, res) {
+router.delete('/collections/:id', isLoggedIn, function(req, res) {
   var id = req.params.id;
 
   Collection.findByIdAndRemove(id, function(err, foundCollection) {

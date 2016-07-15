@@ -17,4 +17,8 @@ $(function() {
   //   console.log(select);
   // });
 
+  $('.container-drop-down').on('mouseover mouseout', function() {
+    $('.drop-down').toggleClass('hidden');
+  });
+
 });
