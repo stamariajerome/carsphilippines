@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Collection = require('../models/collection');
-
+var Comment = require('../models/comment');
 // ===============
 // COMMENTS
 // ===============
@@ -25,6 +25,9 @@ router.post('/collections/:id/comments', isLoggedIn, function(req, res) {
         if(err) {
           console.log(err);
         } else {
+          newComment.author.id = req.user._id;
+          newComment.author.username = req.user.username;
+          newComment.save();
           foundCollection.comments.push(newComment);
           foundCollection.save();
           res.redirect('/collections/' + foundCollection._id);

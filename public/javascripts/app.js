@@ -19,6 +19,7 @@ $(function() {
 
   $('.container-drop-down').on('mouseover mouseout', function() {
     $('.drop-down').toggleClass('hidden');
+    console.log('works!');
   });
 
 });
