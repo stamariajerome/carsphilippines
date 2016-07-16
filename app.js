@@ -22,9 +22,9 @@ var User = require('./models/user');
 // ===============
 // CONFIGURATION
 // ===============
+var url = process.env.databaseCreativeShotsURL || 'mongodb://localhost/creativeshots';
+mongoose.connect(url);
 
-// mongoose.connect('mongodb://localhost/creativeshots');
-mongoose.connect('mongodb://jerome:5225521522j@ds027628.mlab.com:27628/creativeshots');
 var app = express();
 // TODO Just added express
 app.use(require('express-session')({
