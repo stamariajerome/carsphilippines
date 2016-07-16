@@ -23,7 +23,8 @@ var User = require('./models/user');
 // CONFIGURATION
 // ===============
 
-mongoose.connect('mongodb://localhost/creativeshots');
+// mongoose.connect('mongodb://localhost/creativeshots');
+mongoose.connect('mongodb://jerome:5225521522j@ds027628.mlab.com:27628/creativeshots');
 var app = express();
 // TODO Just added express
 app.use(require('express-session')({
