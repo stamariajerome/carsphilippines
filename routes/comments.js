@@ -28,7 +28,7 @@ router.post('/collections/:id/comments', isLoggedIn, function(req, res) {
           newComment.author._id = req.user._id;
           newComment.author.username = req.user.username;
           newComment.save();
-          foundCollection.comments.push(newComment_.id);
+          foundCollection.comments.push(newComment._id);
           foundCollection.save();
           // TODO delete this aha moments! poppulating
           // console.log(newComment);
