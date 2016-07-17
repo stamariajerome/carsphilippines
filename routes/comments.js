@@ -28,14 +28,14 @@ router.post('/collections/:id/comments', isLoggedIn, function(req, res) {
           newComment.author._id = req.user._id;
           newComment.author.username = req.user.username;
           newComment.save();
-          foundCollection.comments.push(newComment._id);
+          foundCollection.comments.push(newComment_.id);
           foundCollection.save();
           // TODO delete this aha moments! poppulating
-          console.log(newComment);
-          console.log('===========================');
-          Comment.findById(newComment._id).populate('author.id').exec(function(err, comment) {
-            console.log(comment);
-          });
+          // console.log(newComment);
+          // console.log('===========================');
+          // Comment.findById(newComment._id).populate('author.id').exec(function(err, comment) {
+          //   console.log(comment);
+          // });
           res.redirect('/collections/' + foundCollection._id);
         }
       });
