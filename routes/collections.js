@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var Collection = require('../models/collection');
-
 var middleware = require('../middleware');
 
 // ===============
@@ -13,6 +12,7 @@ router.get('/collections', middleware.isLoggedIn, function(req, res) {
   Collection.find({}, function(err, collections) {
     if(err) {
       console.log(err);
+    } else {
       res.render('collections/index', { Collections: collections });
     }
   });

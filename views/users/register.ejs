@@ -7,16 +7,17 @@
             <h4><strong>Register</strong></h4>
           </div>
           <div class="panel-body">
+            <% if(failure && failure.length > 0) { %>
+              <div class="alert alert-warning">
+                <%= failure %>
+              </div>
+            <% } %>
             <form action="/register" method="post">
               <div class="form-group">
                 <label for="username">Username</label>
                 <input class="form-control" type="text" name="username" placeholder="username">
                 <label for="password">Password</label>
                 <input class="form-control" type="password" name="password" placeholder="password">
-                <label for="password">First Name:</label>
-                <input class="form-control" type="text" name="firstName" placeholder="first name">
-                <label for="password">Last Name:</label>
-                <input class="form-control" type="text" name="lastName" placeholder="last name">
               </div>
               <button class="btn btn-primary" type="submit" name="button">Register</button>
             </form>

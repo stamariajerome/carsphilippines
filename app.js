@@ -55,7 +55,8 @@ passport.use(new LocalStrategy(User.authenticate()));
 
 app.use(function(req, res, next) {
   res.locals.currentUser = req.user;
-  res.locals.message = req.flash('failure');
+  res.locals.failure = req.flash('failure');
+  res.locals.success = req.flash('success');
   next();
 });
 
