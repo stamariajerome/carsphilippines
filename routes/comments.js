@@ -25,11 +25,17 @@ router.post('/collections/:id/comments', isLoggedIn, function(req, res) {
         if(err) {
           console.log(err);
         } else {
-          newComment.author.id = req.user._id;
+          newComment.author._id = req.user._id;
           newComment.author.username = req.user.username;
           newComment.save();
-          foundCollection.comments.push(newComment);
+          foundCollection.comments.push(newComment._id);
           foundCollection.save();
+          // TODO delete this aha moments! poppulating
+          console.log(newComment);
+          console.log('===========================');
+          Comment.findById(newComment._id).populate('author.id').exec(function(err, comment) {
+            console.log(comment);
+          });
           res.redirect('/collections/' + foundCollection._id);
         }
       });

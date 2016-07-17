@@ -5,6 +5,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
+var flash = require('connect-flash');
 
 //authentication
 var passport = require('passport');
@@ -16,7 +17,6 @@ var LocalStrategy = require('passport-local');
 var Collection = require('./models/collection');
 var Comment = require('./models/comment');
 var User = require('./models/user');
-
 
 
 // ===============
@@ -37,6 +37,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
 app.set('view engine', 'ejs');
 
+app.use(flash());
 // ===============
 // ROUTES
 // ===============
@@ -54,6 +55,7 @@ passport.use(new LocalStrategy(User.authenticate()));
 
 app.use(function(req, res, next) {
   res.locals.currentUser = req.user;
+  res.locals.message = req.flash('failure');
   next();
 });
 
@@ -67,6 +69,5 @@ app.get('/', function(req, res) {
 app.use(collectionRoutes);
 app.use(commentRoutes);
 app.use(userRoutes);
-
 
 app.listen(process.env.PORT, process.env.IP);

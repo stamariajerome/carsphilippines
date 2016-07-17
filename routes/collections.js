@@ -3,15 +3,16 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var Collection = require('../models/collection');
 
+var middleware = require('../middleware');
+
 // ===============
 // COLLECTIONS
 // ===============
 // INDEX - show all collections in the DB
-router.get('/collections', isLoggedIn, function(req, res) {
+router.get('/collections', middleware.isLoggedIn, function(req, res) {
   Collection.find({}, function(err, collections) {
     if(err) {
       console.log(err);
-    } else {
       res.render('collections/index', { Collections: collections });
     }
   });
@@ -19,12 +20,12 @@ router.get('/collections', isLoggedIn, function(req, res) {
 });
 
 // NEW - show new collection form
-router.get('/collections/new', isLoggedIn, function(req, res) {
+router.get('/collections/new', middleware.isLoggedIn, function(req, res) {
   res.render('collections/new');
 });
 
 // CREATE - add new collection into the DB
-router.post('/collections', isLoggedIn, function(req, res) {
+router.post('/collections', middleware.isLoggedIn, function(req, res) {
   var newCollection = req.body.collection;
 
   Collection.create(newCollection, function(err, newCollection) {
@@ -38,7 +39,7 @@ router.post('/collections', isLoggedIn, function(req, res) {
 });
 
 // EDIT - edit a collection in the DB
-router.get('/collections/:id/edit', isLoggedIn, function(req, res) {
+router.get('/collections/:id/edit', middleware.isLoggedIn, function(req, res) {
   var id = req.params.id;
 
   Collection.findById(id, function(err, foundCollection) {
@@ -52,7 +53,7 @@ router.get('/collections/:id/edit', isLoggedIn, function(req, res) {
 
 // SHOW - Show information about the collection
 
-router.get('/collections/:id', isLoggedIn, function(req, res) {
+router.get('/collections/:id', middleware.isLoggedIn, function(req, res) {
   var id = req.params.id;
 
   Collection.findById(id, function(err, foundCollection) {
@@ -72,7 +73,7 @@ router.get('/collections/:id', isLoggedIn, function(req, res) {
 });
 
 //UPDATE - Update information of a collection in the DB
-router.put('/collections/:id', isLoggedIn, function(req, res) {
+router.put('/collections/:id',  middleware.isLoggedIn, function(req, res) {
   var id = req.params.id;
   var update = req.body.collection;
 
@@ -86,7 +87,7 @@ router.put('/collections/:id', isLoggedIn, function(req, res) {
 });
 
 //DESTROY - Delete a particular collection in the DB
-router.delete('/collections/:id', isLoggedIn, function(req, res) {
+router.delete('/collections/:id',  middleware.isLoggedIn, function(req, res) {
   var id = req.params.id;
 
   Collection.findByIdAndRemove(id, function(err, foundCollection) {
@@ -99,11 +100,5 @@ router.delete('/collections/:id', isLoggedIn, function(req, res) {
 
 });
 
-function isLoggedIn(req, res, next) {
-  if(req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect('/login');
-}
 
 module.exports = router;
