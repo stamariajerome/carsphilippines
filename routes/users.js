@@ -16,7 +16,7 @@ router.post('/register', function(req, res) {
   User.register(new User({username: req.body.username}), req.body.password, function(err, newUser){
     if(err) {
       console.log(err);
-      req.flash('failure', err.message);
+      req.flash('error', err.message);
       res.redirect('/register');
     } else {
       passport.authenticate('local')(req, res, function() {
@@ -42,9 +42,4 @@ router.get('/logout', function(req, res) {
   req.logout();
   res.redirect('/collections');
 });
-
-router.get('*', function(req, res) {
-  res.render('404');
-});
-
 module.exports = router;

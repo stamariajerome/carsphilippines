@@ -26,6 +26,7 @@ var url = process.env.databaseCreativeShotsURL || 'mongodb://localhost/creatives
 mongoose.connect(url);
 
 var app = express();
+
 // TODO Just added express
 app.use(require('express-session')({
   secret: 'This is a secret string for the application',
@@ -71,6 +72,18 @@ app.get('/', function(req, res) {
 app.use('/collections', collectionRoutes);
 app.use('/collections/:id', commentRoutes);
 app.use(userRoutes);
+
+// ===============
+// CONTACT
+// ===============
+app.get('/contact', function(req, res) {
+  res.render('contact/contact');
+});
+
+app.get('*', function(req, res) {
+  res.render('404');
+});
+
 
 app.listen(process.env.PORT, process.env.IP);
 // app.listen('3000', function(req, res) {
