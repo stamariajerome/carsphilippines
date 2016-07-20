@@ -12,6 +12,7 @@ router.get('/register', function(req, res) {
 });
 
 router.post('/register', function(req, res) {
+  //TODO add sanitizer
   User.register(new User({username: req.body.username}), req.body.password, function(err, newUser){
     if(err) {
       console.log(err);
@@ -31,8 +32,8 @@ router.get('/login', function(req, res) {
 
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/collections',
-  failureRedireect: '/login',
-  // TODO add login error handling
+  failureRedirect: '/login',
+  // TODO do require flash
   failureFlash: true
 }), function(req, res) {
 });

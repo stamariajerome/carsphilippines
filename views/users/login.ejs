@@ -6,9 +6,9 @@
         <h4><strong>Login</strong></h4>
       </div>
       <div class="panel-body">
-        <% if(failure && failure.length > 0)  {%>
+        <% if(error && error.length > 0)  {%>
           <div class="alert alert-warning">
-            <%= failure %>
+            <%= error %>
           </div>
         <%} %>
         <form action="/login" method="post">
