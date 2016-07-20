@@ -25,7 +25,7 @@ router.get('/new', middleware.isLoggedIn, function(req, res) {
 });
 
 // CREATE - add new collection into the DB
-router.post('/collections', middleware.isLoggedIn, function(req, res) {
+router.post('', middleware.isLoggedIn, function(req, res) {
   var newCollection = req.body.collection;
 
   Collection.create(newCollection, function(err, newCollection) {
