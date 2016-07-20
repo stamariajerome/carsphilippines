@@ -31,9 +31,10 @@ router.get('/login', function(req, res) {
 
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/collections',
-  failureRedireect: '/login'
-}) ,function(req, res) {
-  res.send('login post route');
+  failureRedireect: '/login',
+  // TODO add login error handling
+  failureFlash: true
+}), function(req, res) {
 });
 
 router.get('/logout', function(req, res) {

@@ -3,7 +3,13 @@ var mongoose = require('mongoose');
 var collectionSchema = mongoose.Schema({
   image: String,
   title: String,
-  author: String,
+  author: {
+    id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    },
+    username: String,
+  },
   description: String,
   date: { type: Date, default: Date.now },
   comments: [

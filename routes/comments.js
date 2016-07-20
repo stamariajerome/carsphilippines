@@ -1,5 +1,5 @@
 var express = require('express');
-var router = express.Router();
+var router = express.Router({mergeParams: true});
 var Collection = require('../models/collection');
 var Comment = require('../models/comment');
 // ===============
@@ -8,12 +8,12 @@ var Comment = require('../models/comment');
 
 // NON EXISTENT --------------------------
 // TODO Delete this in the future
-router.get('/collections/:id/comments/new', isLoggedIn, function(req, res) {
+router.get('/comments/new', isLoggedIn, function(req, res) {
   res.render('comments/new');
 });
 
 // CREATE - add new comment into the DB.
-router.post('/collections/:id/comments', isLoggedIn, function(req, res) {
+router.post('/comments', isLoggedIn, function(req, res) {
   var newComment = req.body.comment;
   var id = req.params.id;
 
@@ -30,6 +30,7 @@ router.post('/collections/:id/comments', isLoggedIn, function(req, res) {
           newComment.save();
           foundCollection.comments.push(newComment._id);
           foundCollection.save();
+          console.log(foundCollection);
           // TODO delete this aha moments! poppulating
           // console.log(newComment);
           // console.log('===========================');
@@ -45,7 +46,7 @@ router.post('/collections/:id/comments', isLoggedIn, function(req, res) {
 });
 
 //DESTROY - remove a spcific comment in the DB
-router.delete('/collections/:id/comments', isLoggedIn, function(req, res) {
+router.delete('/comments', isLoggedIn, function(req, res) {
   var commentId = req.body.id;
   var CollectionId = req.params.id;
 

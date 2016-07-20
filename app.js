@@ -36,8 +36,8 @@ app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
 app.set('view engine', 'ejs');
-
 app.use(flash());
+
 // ===============
 // ROUTES
 // ===============
@@ -67,8 +67,11 @@ app.get('/', function(req, res) {
   res.render('landing');
 });
 
-app.use(collectionRoutes);
-app.use(commentRoutes);
+app.use('/collections', collectionRoutes);
+app.use('/collections/:id', commentRoutes);
 app.use(userRoutes);
 
-app.listen(process.env.PORT, process.env.IP);
+// app.listen(process.env.PORT, process.env.IP);
+app.listen('3000', function(req, res) {
+  console.log('server started in port 3000');
+});
