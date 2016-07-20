@@ -55,7 +55,6 @@ router.get('/:id/edit', middleware.isLoggedIn, function(req, res) {
 });
 
 // SHOW - Show information about the collection
-
 router.get('/:id', middleware.isLoggedIn, function(req, res) {
   var id = req.params.id;
 

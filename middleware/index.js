@@ -9,7 +9,7 @@ middleware.isLoggedIn = function(req, res, next) {
   next();
 };
 
-middleware.checkOwnership = function(req, res, next) {
+middleware.checkOwnershipCollection = function(req, res, next) {
 
 };
 module.exports = middleware;
