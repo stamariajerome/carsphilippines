@@ -71,7 +71,7 @@ app.use('/collections', collectionRoutes);
 app.use('/collections/:id', commentRoutes);
 app.use(userRoutes);
 
-// app.listen(process.env.PORT, process.env.IP);
-app.listen('3000', function(req, res) {
-  console.log('server started in port 3000');
-});
+app.listen(process.env.PORT, process.env.IP);
+// app.listen('3000', function(req, res) {
+//   console.log('server started in port 3000');
+// });
