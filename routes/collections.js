@@ -32,7 +32,7 @@ router.post('', middleware.isLoggedIn, function(req, res) {
     if(err) {
       console.log(err);
     } else {
-      newCollection.author._id = req.user._id;
+      newCollection.author.id = req.user._id;
       newCollection.author.username = req.user.username;
       newCollection.save();
       res.redirect('/collections');
@@ -42,7 +42,7 @@ router.post('', middleware.isLoggedIn, function(req, res) {
 });
 
 // EDIT - edit a collection in the DB
-router.get('/:id/edit', middleware.isLoggedIn, function(req, res) {
+router.get('/:id/edit', middleware.checkOwnershipCollection, function(req, res) {
   var id = req.params.id;
 
   Collection.findById(id, function(err, foundCollection) {
@@ -75,7 +75,7 @@ router.get('/:id', middleware.isLoggedIn, function(req, res) {
 });
 
 //UPDATE - Update information of a collection in the DB
-router.put('/:id',  middleware.isLoggedIn, function(req, res) {
+router.put('/:id', middleware.checkOwnershipCollection, function(req, res) {
   var id = req.params.id;
   var update = req.body.collection;
 
@@ -89,7 +89,7 @@ router.put('/:id',  middleware.isLoggedIn, function(req, res) {
 });
 
 //DESTROY - Delete a particular collection in the DB
-router.delete('/:id',  middleware.isLoggedIn, function(req, res) {
+router.delete('/:id', middleware.checkOwnershipCollection, function(req, res) {
   var id = req.params.id;
 
   Collection.findByIdAndRemove(id, function(err, foundCollection) {

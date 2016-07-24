@@ -1,6 +1,11 @@
 <% include ../partials/header %>
   <div class="container collection-show">
     <div class="col-lg-7">
+      <% if(error && error.length > 0)  {%>
+        <div class="alert alert-danger">
+          <%= error %>
+        </div>
+      <%} %>
       <div class="panel panel-default">
         <div class="panel-heading">
           <div class="row">
