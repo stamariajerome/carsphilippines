@@ -68,7 +68,7 @@ app.use(function(req, res, next) {
 // LANDING
 // ===============
 app.get('/', function(req, res) {
-  res.render('landing');
+  res.render('users/login');
 });
 
 app.use('/collections', collectionRoutes);
