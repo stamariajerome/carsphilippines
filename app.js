@@ -1,23 +1,27 @@
-
 // ===============
 // PACKAGES
 // ===============
-var express = require('express');
-var mongoose = require('mongoose');
-var bodyParser = require('body-parser');
-var methodOverride = require('method-override');
-var flash = require('connect-flash');
+var express = require('express'),
+mongoose = require('mongoose'),
+bodyParser = require('body-parser'),
+methodOverride = require('method-override'),
+flash = require('connect-flash');
 
 //authentication
-var passport = require('passport');
-var LocalStrategy = require('passport-local');
+var passport = require('passport'),
+LocalStrategy = require('passport-local');
 
 // ===============
 // MODELS
 // ===============
-var Collection = require('./models/collection');
-var Comment = require('./models/comment');
-var User = require('./models/user');
+var Collection = require('./models/collection'),
+Comment = require('./models/comment'),
+User = require('./models/user');
+
+// ===============
+// HELPERS
+// ===============
+var helpers = require('./helpers');
 
 
 // ===============
