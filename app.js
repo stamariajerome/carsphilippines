@@ -46,7 +46,8 @@ app.use(flash());
 var collectionRoutes = require('./routes/collections');
 var commentRoutes = require('./routes/comments');
 var userRoutes = require('./routes/users');
-
+// TODO finish this by friday.
+var profileRoutes = require('./routes/profile');
 //authentication
 // TODO initialize authentication
 app.use(passport.initialize());
@@ -73,6 +74,7 @@ app.get('/', function(req, res) {
 app.use('/collections', collectionRoutes);
 app.use('/collections/:id', commentRoutes);
 app.use(userRoutes);
+app.use(profileRoutes);
 
 // ===============
 // CONTACT
@@ -86,7 +88,7 @@ app.get('*', function(req, res) {
 });
 
 
-app.listen(process.env.PORT, process.env.IP);
-// app.listen('3000', function(req, res) {
-//   console.log('server started in port 3000');
-// });
+// app.listen(process.env.PORT, process.env.IP);
+app.listen('3000', function(req, res) {
+  console.log('server started in port 3000');
+});

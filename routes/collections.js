@@ -35,7 +35,7 @@ router.post('', middleware.isLoggedIn, function(req, res) {
       newCollection.author.id = req.user._id;
       newCollection.author.username = req.user.username;
       newCollection.save();
-      res.redirect('/collections');
+      // res.redirect('/collections');
     }
   });
 
