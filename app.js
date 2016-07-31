@@ -73,7 +73,7 @@ app.use(function(req, res, next) {
 // LANDING
 // ===============
 app.get('/', function(req, res) {
-  res.render('users/login');
+  res.redirect('/collections');
 });
 
 app.use('/collections', collectionRoutes);
