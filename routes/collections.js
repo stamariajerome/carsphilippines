@@ -55,7 +55,7 @@ router.get('/:id/edit', middleware.checkOwnershipCollection, function(req, res) 
 });
 
 // SHOW - Show information about the collection
-router.get('/:id', middleware.isLoggedIn, function(req, res) {
+router.get('/:id', function(req, res) {
   var id = req.params.id;
 
   Collection.findById(id, function(err, foundCollection) {
