@@ -4,9 +4,9 @@
   "description": "Creativeshot for posting creative and amazing pictures by people around the world.",
   "main": "app.js",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
-    "postinstall": "bower install",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postinstall": "bower install"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,7 @@
   "homepage": "https://github.com/stamariajerome/carsphilippines#readme",
   "dependencies": {
     "body-parser": "^1.15.2",
+    "bower": "^1.7.9",
     "connect-flash": "^0.1.1",
     "ejs": "^2.5.1",
     "express": "^4.14.0",
