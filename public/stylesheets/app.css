@@ -175,6 +175,10 @@ ul.comments li {
   list-style: none;
 }
 
+#comment {
+  padding: 20px 0;
+}
+
 .user-profile-picture img {
   border-radius: 50px;
   width: 30px;

@@ -27,7 +27,7 @@ var helpers = require('./helpers');
 // ===============
 // CONFIGURATION
 // ===============
-var url = process.env.databaseCreativeShotsURL || 'mongodb://localhost/creativeshots';
+var url = process.env.databaseCreativeShotsURL || 'mongodb://localhost/carsphilippines';
 mongoose.connect(url);
 
 var app = express();
@@ -96,6 +96,3 @@ app.get('*', function(req, res) {
 app.listen(process.env.PORT, process.env.IP, function() {
   console.log('Server Started!');
 });
-// app.listen('3000', function(req, res) {
-//   console.log('server started in port 3000');
-// });

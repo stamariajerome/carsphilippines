@@ -8,7 +8,7 @@ var middleware = require('../middleware');
 // COLLECTIONS
 // ===============
 // INDEX - show all collections in the DB
-router.get('', middleware.isLoggedIn, function(req, res) {
+router.get('', function(req, res) {
   Collection.find({}, function(err, collections) {
     if(err) {
       console.log(err);
@@ -35,7 +35,7 @@ router.post('', middleware.isLoggedIn, function(req, res) {
       newCollection.author.id = req.user._id;
       newCollection.author.username = req.user.username;
       newCollection.save();
-      // res.redirect('/collections');
+      res.redirect('/collections');
     }
   });
 

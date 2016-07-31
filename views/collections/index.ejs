@@ -9,12 +9,14 @@
                   <small>Amazing cars by people around the philippines!</small>
               </h1>
           </div>
-          <div class="col-lg-4">
-            <a href="/Collections/new" class="btn btn-primary pull-right" type="button">
-              <i class="fa fa-cloud-upload" aria-hidden="true"></i>
-              Add Car
-            </a>
-          </div>
+          <% if(currentUser) { %>
+            <div class="col-lg-4">
+              <a href="/Collections/new" class="btn btn-primary pull-right" type="button">
+                <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+                Add Car
+              </a>
+            </div>
+          <% } %>
         </div>
 
         <hr>
