@@ -39,6 +39,7 @@ app.use(require('express-session')({
   saveUninitialized: false
 }));
 app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/bower_components'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
 app.set('view engine', 'ejs');
@@ -88,7 +89,7 @@ app.get('/contact', function(req, res) {
 });
 
 app.get('*', function(req, res) {
-  res.render('404');
+  res.render('pages/404');
 });
 
 
