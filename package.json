@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/stamariajerome/creativeshots.git"
+    "url": "git+ssh://git@github.com:stamariajerome/carsphilippines.git"
   },
   "author": "Jerome Sta. Maria",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/stamariajerome/creativeshots/issues"
+    "url": "https://github.com/stamariajerome/carsphilippines/issues"
   },
-  "homepage": "https://github.com/stamariajerome/creativeshots#readme",
+  "homepage": "https://github.com/stamariajerome/carsphilippines#readme",
   "dependencies": {
     "body-parser": "^1.15.2",
     "connect-flash": "^0.1.1",
